@@ -9,6 +9,14 @@ pipeline {
 
   stages {
     
+    stage('Checkout Source') {
+      steps{
+        script {
+          checkout scm
+        }
+      }
+    }
+
     stage('Helm deploy Datadog') {
       steps {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
