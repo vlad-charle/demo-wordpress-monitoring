@@ -23,7 +23,7 @@ pipeline {
       steps {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
                 sh '''
-                    helm install datadog -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey='${datadog_apiKey}' datadog/datadog
+                    helm install datadog -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey=${datadog_apiKey} datadog/datadog
                 '''
         }
       }
