@@ -20,6 +20,7 @@ pipeline {
       steps {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
             sh 'helm repo add datadog https://helm.datadoghq.com'
+            sh 'helm repo update'
         }
       }
     }
