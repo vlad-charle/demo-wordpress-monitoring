@@ -9,12 +9,5 @@ pipeline {
 
   stages {
     
-    stage('Checkout Source') {
-      steps{
-        script {
-          checkout scm
-        }
-      }
-    }
   }
 }
