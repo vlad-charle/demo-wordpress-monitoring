@@ -10,12 +10,19 @@ pipeline {
 
   stages {
     
-    stage('Helm deploy Datadog') {
+    stage('Helm add & update Datadog repo') {
       steps {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
             sh 'helm repo add datadog https://helm.datadoghq.com'
             sh 'helm repo update'
-            sh 'helm install datadog -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey='${datadog_apiKey}' datadog/datadog'
+        }
+      }
+    }
+
+    stage('Helm deploy Datadog') {
+      steps {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'helm install datadog -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey='datadog_apiKey' datadog/datadog'
         }
       }
     }
