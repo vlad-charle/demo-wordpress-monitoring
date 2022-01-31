@@ -10,12 +10,6 @@ pipeline {
 
   stages {
     
-    stage('hello world') {
-      steps {
-          sh 'echo "Hello World"'
-      }
-    }
-
     stage('Helm deploy Datadog') {
       steps {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
