@@ -8,6 +8,6 @@ pipeline {
   agent any
 
   stages {
-    
+    sh 'echo "Hello World"'
   }
 }
